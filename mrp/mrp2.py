@@ -25,6 +25,7 @@ class MRP:
         self.products.append(product)
 
     def calculate_mrp(self, ilosc_tygodni):
+
         for product in self.products:
                 print("Produkt: Stoły")
                 for i in range(1, ilosc_tygodni + 1):
@@ -101,6 +102,7 @@ class MRP:
                         a = 0
                     print("Potrzeby brutto:", potrzeby_brutto, "Wstępny zapas:", wstepny_zapas, "Potrzeby netto:", potrzeby_netto, "Wstępne zmontowanie:", zmontowanie, "Zaplanowany odbior:", odbior)
                     print("\n")
+                    
 
                 print("Produkt: Listwa wykończeniowa")
                 for i in range(1, ilosc_tygodni + 1):
@@ -128,17 +130,18 @@ if __name__ == "__main__":
     try:
         czas_produkcji_elementow = int(input("Podaj czas produkcji stołów(w tygodniach):"))
         ilosc_tygodni_minimalnie = czas_produkcji_elementow * 3 + czas_produkcji_elementow * 3 + 3
-        print("Minimalna liczba tygodni potrzebna do produkcji na wszystkich poziomach:", ilosc_tygodni_minimalnie)
-        ilosc_tygodni = int(input("Podaj ilość tygodni: "))
+        print("Uwaga! Minimalna liczba tygodni potrzebna do produkcji na wszystkich poziomach:", ilosc_tygodni_minimalnie)
+        ilosc_tygodni = int(input("Podaj ilość tygodni, dla których wyświetlić algorytm: "))
         zapas_stolow = int(input("Podaj ilość zapasów stołów: "))
         zapas_nog = int(input("Podaj ilość zapasów nóg: "))
         zapas_blatow = int(input("Podaj ilość zapasów blatów: "))
         ilosc_produktow_na_wskazany_tydzien = int(input("Podaj ilość produktów na wskazany tydzień: "))
-        tydzien_na_ktory_chcemy_produkty = int(input("Podaj tydzień, na który jest zamówienie: "))
+        tydzien_na_ktory_chcemy_produkty = int(input(f"Podaj tydzień, na który jest zamówienie (Uwaga! Czas produkcji to minimalnie {ilosc_tygodni_minimalnie}: )"))
 
         stoly = Product(czas_produkcji_elementow, zapas_stolow, zapas_nog, zapas_blatow, ilosc_produktow_na_wskazany_tydzien, tydzien_na_ktory_chcemy_produkty)
         # 1, 2, 20, 4, 20, 9
         mrp_system.add_product(stoly)
         mrp_system.calculate_mrp(ilosc_tygodni)
+        
     except ValueError:
         print("Błąd: Podana wartość nie jest liczbą całkowitą.")
