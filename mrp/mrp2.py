@@ -49,12 +49,12 @@ class MRP:
                 print("Produkt: Nogi")
                 for i in range(1, ilosc_tygodni + 1):
                     print("Tydzien", i)
-                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-1 else product.ilosc_produktow_na_wskazany_tydzien*4 - product.zapas_stolow*4
-                    wstepny_zapas = product.zapas_nog if i <= product.tydzien_na_ktory_chcemy_produkty-1 else 0
+                    potrzeby_brutto = 0 if i <= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2 else product.ilosc_produktow_na_wskazany_tydzien*4 - product.zapas_stolow*4
+                    wstepny_zapas = product.zapas_nog if i <= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow else 0
                     potrzeby_netto = max(0, potrzeby_brutto - wstepny_zapas)
                     a = (product.ilosc_produktow_na_wskazany_tydzien*4 - product.zapas_stolow * 4 - product.zapas_nog)
-                    zmontowanie = a if i == (product.tydzien_na_ktory_chcemy_produkty-1 - product.czas_produkcji_elementow*2) and a > 0 else 0
-                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-1 else 0
+                    zmontowanie = a if i == (product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2) and a > 0 else 0
+                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2 else 0
                     if i >= product.tydzien_na_ktory_chcemy_produkty:
                         potrzeby_brutto = 0
                         wstepny_zapas = 0
@@ -68,13 +68,13 @@ class MRP:
                 print("Produkt: Blaty")
                 for i in range(1, ilosc_tygodni + 1):
                     print("Tydzien", i)
-                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-1 else product.ilosc_produktow_na_wskazany_tydzien - product.zapas_stolow
-                    wstepny_zapas = product.zapas_blatow if i <= product.tydzien_na_ktory_chcemy_produkty-1 else 0
+                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2 else product.ilosc_produktow_na_wskazany_tydzien - product.zapas_stolow
+                    wstepny_zapas = product.zapas_blatow if i <= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2 else 0
                     potrzeby_netto = max(0, potrzeby_brutto - wstepny_zapas)
                     a = product.ilosc_produktow_na_wskazany_tydzien - product.zapas_blatow - product.zapas_stolow
-                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty-1 - product.czas_produkcji_elementow*3) and a > 0 else 0
-                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-1 else 0
-                    if i > product.tydzien_na_ktory_chcemy_produkty-1:
+                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2) and a > 0 else 0
+                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2 else 0
+                    if i >= product.tydzien_na_ktory_chcemy_produkty:
                         potrzeby_brutto = 0
                         wstepny_zapas = 0
                         potrzeby_netto = 0
@@ -88,12 +88,12 @@ class MRP:
                 for i in range(1, ilosc_tygodni + 1):
                     print("Tydzien", i)
                     a = product.ilosc_produktow_na_wskazany_tydzien - product.zapas_blatow - product.zapas_stolow
-                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 or a < 0 else a
+                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty - product.czas_produkcji_elementow*3  or a < 0 else a
                     wstepny_zapas = 0 
                     potrzeby_netto = max(0, potrzeby_brutto - wstepny_zapas)
-                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 - product.czas_produkcji_elementow*2) and a > 0 else 0
-                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 else 0
-                    if i > product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3:
+                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty- product.czas_produkcji_elementow*3) and a > 0 else 0
+                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*3 else 0
+                    if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2:
                         potrzeby_brutto = 0
                         wstepny_zapas = 0
                         potrzeby_netto = 0
@@ -107,13 +107,13 @@ class MRP:
                 print("Produkt: Listwa wykończeniowa")
                 for i in range(1, ilosc_tygodni + 1):
                     print("Tydzien", i)
-                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 else product.ilosc_produktow_na_wskazany_tydzien*3 - product.zapas_blatow*3 - product.zapas_stolow*3
+                    potrzeby_brutto = 0 if i < product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*3 else product.ilosc_produktow_na_wskazany_tydzien*3 - product.zapas_blatow*3 - product.zapas_stolow*3
                     wstepny_zapas = 0 
                     potrzeby_netto = max(0, potrzeby_brutto - wstepny_zapas)
                     a = product.ilosc_produktow_na_wskazany_tydzien*3 - product.zapas_blatow*3 - product.zapas_stolow*3
-                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 - product.czas_produkcji_elementow*3) and a > 0 else 0
-                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3 else 0
-                    if i > product.tydzien_na_ktory_chcemy_produkty-2 - product.czas_produkcji_elementow*3:
+                    zmontowanie = a if (i == product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*3) and a > 0 else 0
+                    odbior = potrzeby_netto if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*3 else 0
+                    if i >= product.tydzien_na_ktory_chcemy_produkty-product.czas_produkcji_elementow*2:
                         potrzeby_brutto = 0
                         wstepny_zapas = 0
                         potrzeby_netto = 0
@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
     try:
         czas_produkcji_elementow = int(input("Podaj czas produkcji stołów(w tygodniach):"))
-        ilosc_tygodni_minimalnie = czas_produkcji_elementow * 3 + czas_produkcji_elementow * 3 + 3
+        ilosc_tygodni_minimalnie = czas_produkcji_elementow * 3 + czas_produkcji_elementow
         print("Uwaga! Minimalna liczba tygodni potrzebna do produkcji na wszystkich poziomach:", ilosc_tygodni_minimalnie)
         ilosc_tygodni = int(input("Podaj ilość tygodni, dla których wyświetlić algorytm: "))
         zapas_stolow = int(input("Podaj ilość zapasów stołów: "))
