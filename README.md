@@ -5,3 +5,5 @@ Możemy samodzielnie określić czas produkcji elementów, zapas stołów, nóg 
 Możemy również określić, ile stołów chcemy i na jaki tydzień. 
 Stół składa się z 4 nóg i 1 blatu.
 Blat składa się z 1 płyty pilśniowej i 3 listw wykończeniowych.
+
+Link do repozytorium na GitHub: https://github.com/WiktoriaWezgraj/MRP-algorithm.git
