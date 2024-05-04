@@ -195,3 +195,5 @@ if __name__ == "__main__":
         
     except ValueError:
         print("Błąd: Podana wartość nie jest liczbą całkowitą.")
+
+input("Press Enter to exit...")
