@@ -180,7 +180,7 @@ if __name__ == "__main__":
         zapas_nog = int(input("Podaj ilość zapasów nóg: "))
         zapas_blatow = int(input("Podaj ilość zapasów blatów: "))
         ilosc_produktow_na_wskazany_tydzien = int(input("Podaj ilość produktów na wskazany tydzień: "))
-        tydzien_na_ktory_chcemy_produkty = int(input(f"Podaj tydzień, na który jest zamówienie (Uwaga! Czas produkcji to minimalnie {ilosc_tygodni_minimalnie}): "))
+        tydzien_na_ktory_chcemy_produkty = ilosc_tygodni
 
         if zapas_stolow >= ilosc_produktow_na_wskazany_tydzien:
             print("Produkt w magazynie gotowy do wysyłki!")
